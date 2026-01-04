@@ -9,6 +9,9 @@ const inter = Inter({
 export const metadata = {
   title: "ReadMyHack",
   description: "Turn your GitHub repo into a hackathon submission.",
+  icons: {
+    icon: '/favicon-32x32.png',
+  },
 };
 
 export default function RootLayout({ children }) {
