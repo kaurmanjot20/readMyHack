@@ -4,8 +4,13 @@ if (!process.env.GEMINI_API_KEY) {
     throw new Error("Missing GEMINI_API_KEY environment variable");
 }
 
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+// Allow user to configure model in .env (e.g. gemini-1.5-flash, gemini-2.0-flash-exp)
+// Fallback to gemini-2.0-flash-exp as it is confirmed to exist (even if rate limited)
+const modelName = process.env.GEMINI_MODEL || "gemini-2.0-flash-exp";
+const model = genAI.getGenerativeModel({ model: modelName });
 
 /**
  * Generates hackathon submission content using Gemini.
@@ -24,13 +29,13 @@ export async function generateProjectDetails(repoData) {
   Repo Name: ${repoData.repo}
   Owner: ${repoData.owner}
   Files:
-  ${repoData.structure ? repoData.structure.substring(0, 1000) : "Not available"}
+  ${repoData.structure ? repoData.structure.substring(0, 800) : "Not available"}
   
   Package.json:
-  ${repoData.packageJson ? JSON.stringify(repoData.packageJson).substring(0, 500) : "Not available"}
+  ${repoData.packageJson ? JSON.stringify(repoData.packageJson).substring(0, 300) : "Not available"}
   
   README Content (Truncated):
-  ${repoData.readme ? repoData.readme.substring(0, 15000) : "No README found"}
+  ${repoData.readme ? repoData.readme.substring(0, 8000) : "No README found"}
   
   TASK:
   Generate the following 5 distinct sections in valid JSON format only.

@@ -30,7 +30,7 @@ export default function RepoInput({ onAnalyze, isLoading }) {
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         disabled={isLoading}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-surface shadow-subtle text-foreground placeholder:text-gray-400"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-800 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-surface/50 shadow-subtle text-foreground placeholder:text-gray-600"
                     />
                 </div>
 
@@ -41,7 +41,7 @@ export default function RepoInput({ onAnalyze, isLoading }) {
                 <button
                     type="submit"
                     disabled={isLoading || !url}
-                    className="w-full bg-foreground text-white font-medium py-3 rounded-lg hover:bg-black/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-card"
+                    className="w-full bg-accent text-white font-medium py-3 rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm focus:ring-2 focus:ring-accent focus:outline-none"
                 >
                     {isLoading ? "Analyzing Repository..." : "Generate Submission"}
                 </button>

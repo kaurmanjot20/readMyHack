@@ -3,6 +3,8 @@
 
 import { useState } from "react";
 
+import Markdown from "react-markdown";
+
 function Section({ title, content, copyText }) {
     const [copied, setCopied] = useState(false);
 
@@ -13,20 +15,20 @@ function Section({ title, content, copyText }) {
     };
 
     return (
-        <div className="bg-surface rounded-xl border border-gray-100 shadow-sm overflow-hidden mb-6">
-            <div className="px-6 py-4 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
-                <h3 className="font-semibold text-foreground">{title}</h3>
+        <div className="bg-surface rounded-xl border border-gray-800 border-l-4 border-l-accent shadow-sm overflow-hidden transition-all hover:shadow-md h-full flex flex-col hover:border-gray-700">
+            <div className="px-6 py-4 border-b border-gray-800 flex justify-between items-center bg-white/5">
+                <h3 className="font-semibold text-foreground tracking-wide">{title}</h3>
                 <button
                     onClick={handleCopy}
-                    className="text-xs font-medium px-3 py-1.5 rounded-md bg-white border border-gray-200 hover:bg-gray-50 text-secondary transition-colors"
+                    className="text-xs font-medium px-3 py-1.5 rounded-md bg-transparent border border-gray-700 hover:border-accent hover:text-accent text-secondary transition-all"
                 >
                     {copied ? "Copied!" : "Copy"}
                 </button>
             </div>
-            <div className="p-6">
-                <div className="prose prose-sm max-w-none text-gray-600 leading-relaxed whitespace-pre-wrap">
+            <div className="p-6 flex-grow prose prose-sm prose-invert max-w-none text-gray-300 leading-relaxed whitespace-pre-wrap">
+                <Markdown>
                     {content}
-                </div>
+                </Markdown>
             </div>
         </div>
     );
@@ -52,7 +54,7 @@ ${generated.why_it_matters}
   `.trim();
 
     return (
-        <div className="w-full max-w-3xl mx-auto px-4 py-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="w-full mx-auto px-4 py-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
 
             <div className="flex justify-end gap-3 mb-8">
                 <SectionButton
@@ -66,32 +68,34 @@ ${generated.why_it_matters}
                 />
             </div>
 
-            <Section
-                title="Problem Statement"
-                content={generated.problem_statement}
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Section
+                    title="Problem Statement"
+                    content={generated.problem_statement}
+                />
 
-            <Section
-                title="Solution Overview"
-                content={generated.solution_overview}
-            />
+                <Section
+                    title="Solution Overview"
+                    content={generated.solution_overview}
+                />
 
-            <Section
-                title="How It Works"
-                content={generated.how_it_works}
-            />
+                <Section
+                    title="How It Works"
+                    content={generated.how_it_works}
+                />
 
-            <Section
-                title="Why It Matters (Impact)"
-                content={generated.why_it_matters}
-            />
+                <Section
+                    title="Why It Matters (Impact)"
+                    content={generated.why_it_matters}
+                />
+            </div>
 
-            <div className="mt-12 pt-8 border-t border-gray-200">
-                <h2 className="text-xl font-bold mb-6 text-center">🗣️ Demo Script (2 Minutes)</h2>
-                <div className="bg-white p-8 rounded-xl border-2 border-dashed border-gray-200 shadow-subtle">
-                    <p className="whitespace-pre-wrap text-lg leading-relaxed text-gray-700 font-medium">
+            <div className="mt-12 pt-8 border-t border-gray-800">
+                <h2 className="text-xl font-bold mb-6 text-center text-accent">🗣️ Demo Script (2 Minutes)</h2>
+                <div className="bg-surface p-8 rounded-xl border-2 border-dashed border-gray-800 shadow-subtle hover:border-accent/50 transition-colors prose prose-lg prose-invert max-w-none text-gray-300 leading-relaxed font-medium">
+                    <Markdown>
                         {generated.demo_script}
-                    </p>
+                    </Markdown>
                 </div>
             </div>
 
@@ -111,9 +115,9 @@ function SectionButton({ text, content, primary }) {
     return (
         <button
             onClick={handleCopy}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${primary
-                    ? "bg-foreground text-white hover:bg-black/90 shadow-md"
-                    : "bg-white border border-gray-200 text-secondary hover:bg-gray-50 shadow-sm"
+            className={`px-4 py-2 rounded-lg text-sm font-bold tracking-wide transition-all ${primary
+                ? "bg-accent text-white hover:bg-accent-hover shadow-md hover:shadow-accent/20"
+                : "bg-surface border border-gray-700 text-gray-300 hover:border-accent hover:text-accent shadow-sm"
                 }`}
         >
             {copied ? "Copied!" : text}

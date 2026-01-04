@@ -1,21 +1,27 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: var(--font-inter);
 
-  --color-background: #F9FAFB;
-  /* Off-white */
-  --color-foreground: #111827;
-  /* Near-black */
-  --color-secondary: #6B7280;
-  /* Muted gray */
-  --color-accent: #475569;
-  /* Slate */
-  --color-surface: #FFFFFF;
-  /* White */
+  /* CoderRabbit Inspired Theme */
+  --color-background: #050505;
+  /* Deep Black */
+  --color-foreground: #ffffff;
 
-  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --color-secondary: #9ca3af;
+  /* Gray 400 */
+
+  /* Recommended Orange Accent */
+  --color-accent: #E07A2F;
+  --color-accent-light: #2A1A0F;
+  --color-accent-hover: #C9651E;
+
+  --color-surface: #0f0f0f;
+  /* Slightly lighter black for cards */
+
+  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -24,6 +30,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Subtle Grid Pattern */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 /* Custom Scrollbar */
