@@ -18,6 +18,17 @@ export default function RootLayout({ children }) {
         className={`${inter.variable} antialiased`}
       >
         {children}
+        <footer className="w-full py-4 mt-10 text-center text-sm text-secondary border-t border-white/5 bg-background/80 backdrop-blur-sm">
+          Made with ☕ by{" "}
+          <a
+            href="https://x.com/kaurmanjot20"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#E07A2F] hover:text-[#C9651E] font-medium transition-colors"
+          >
+            Manjot Kaur
+          </a>
+        </footer>
       </body>
     </html>
   );
